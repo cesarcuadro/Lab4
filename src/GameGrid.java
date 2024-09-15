@@ -2,6 +2,8 @@ import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class GameGrid {
+    // instantiate a LinkedList object
+
     public int[][] createGameGrid(int size, int chance) {
         int[][] grid = new int[size][size];
         SecureRandom randomNum = new SecureRandom();
@@ -33,6 +35,8 @@ public class GameGrid {
         while (!exitGame) {
             System.out.println("Press (D) for down. Press (R) for right.");
             char move = scanner.nextLine().toUpperCase().charAt(0);
+            // use the isUserRow and iUserCol to call the addNode method
+                // on the LinkedList instance to add a node for every user move
             if (move == 'D') {
                 iUserRow++;
             }
@@ -56,6 +60,11 @@ public class GameGrid {
             }
         }
 
+        // create while loop
+            // loop will run until all LinkedList nodes have been removed and processed
+            // call removeNode method on LinkedList instance
+            // count the number of moves
+
         System.out.println("Here is the final grid:");
         for (int row = 0; row < gridSize; row++) {
             for (int col = 0; col < gridSize; col++) {
@@ -67,6 +76,8 @@ public class GameGrid {
             }
             System.out.println();
         }
+        // print out total number of player moves
+        //insert professor test case below this line
         scanner.close();
     }
 
