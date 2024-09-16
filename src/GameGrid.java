@@ -3,6 +3,9 @@ import java.util.Scanner;
 
 public class GameGrid {
     // instantiate a LinkedList object
+    LinkedList oLinkedList = new LinkedList();
+    int moveCount = 0;
+
 
     public int[][] createGameGrid(int size, int chance) {
         int[][] grid = new int[size][size];
@@ -58,12 +61,17 @@ public class GameGrid {
                     exitGame = true;
                 }
             }
+            oLinkedList.addNode(iUserRow, iUserCol);
+            moveCount++;
         }
 
         // create while loop
             // loop will run until all LinkedList nodes have been removed and processed
+        while (oLinkedList.getHeadNode() != null) {
             // call removeNode method on LinkedList instance
-            // count the number of moves
+            Node currentNode =  oLinkedList.removeNode();
+            gameGridArray[currentNode.xPosition][currentNode.yPosition] = 7;
+        }
 
         System.out.println("Here is the final grid:");
         for (int row = 0; row < gridSize; row++) {
@@ -77,6 +85,8 @@ public class GameGrid {
             System.out.println();
         }
         // print out total number of player moves
+        System.out.println();
+        System.out.println("Total number of moves: " + moveCount);
         //insert professor test case below this line
         scanner.close();
     }
