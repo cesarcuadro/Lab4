@@ -88,6 +88,29 @@ public class GameGrid {
         System.out.println();
         System.out.println("Total number of moves: " + moveCount);
         //insert professor test case below this line
+        LinkedList oTestLL = oLinkedList; // Adjust if you named your LinkedList variable differently
+        try {
+            oTestLL.addNode(124, 0);
+            System.out.println("***test-add-" + oTestLL.getHeadNode().xPosition);
+        } catch (Exception ex) {
+            System.out.println("###test-add");
+        }
+        try {
+            if (oTestLL.removeNode().xPosition == 124) {
+                System.out.println("***test-remove");
+            } else {
+            throw new Exception();
+            }
+        } catch (Exception ex) {
+            System.out.println("###test-remove");
+        }
+        try {
+            int i = oTestLL.removeNode().xPosition;
+            System.out.println("###test-empty");
+        } catch (Exception ex) {
+            System.out.println("***test-empty");
+        }
+
         scanner.close();
     }
 
