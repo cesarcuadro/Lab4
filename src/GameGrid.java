@@ -2,6 +2,11 @@ import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class GameGrid {
+    // instantiate a LinkedList object
+    LinkedList oLinkedList = new LinkedList();
+    int moveCount = 0;
+
+
     public int[][] createGameGrid(int size, int chance) {
         int[][] grid = new int[size][size];
         SecureRandom randomNum = new SecureRandom();
@@ -33,6 +38,8 @@ public class GameGrid {
         while (!exitGame) {
             System.out.println("Press (D) for down. Press (R) for right.");
             char move = scanner.nextLine().toUpperCase().charAt(0);
+            // use the isUserRow and iUserCol to call the addNode method
+                // on the LinkedList instance to add a node for every user move
             if (move == 'D') {
                 iUserRow++;
             }
@@ -54,6 +61,16 @@ public class GameGrid {
                     exitGame = true;
                 }
             }
+            oLinkedList.addNode(iUserRow, iUserCol);
+            moveCount++;
+        }
+
+        // create while loop
+            // loop will run until all LinkedList nodes have been removed and processed
+        while (oLinkedList.getHeadNode() != null) {
+            // call removeNode method on LinkedList instance
+            Node currentNode =  oLinkedList.removeNode();
+            gameGridArray[currentNode.xPosition][currentNode.yPosition] = 7;
         }
 
         System.out.println("Here is the final grid:");
@@ -67,6 +84,33 @@ public class GameGrid {
             }
             System.out.println();
         }
+        // print out total number of player moves
+        System.out.println();
+        System.out.println("Total number of moves: " + moveCount);
+        //insert professor test case below this line
+        LinkedList oTestLL = oLinkedList; // Adjust if you named your LinkedList variable differently
+        try {
+            oTestLL.addNode(124, 0);
+            System.out.println("***test-add-" + oTestLL.getHeadNode().xPosition);
+        } catch (Exception ex) {
+            System.out.println("###test-add");
+        }
+        try {
+            if (oTestLL.removeNode().xPosition == 124) {
+                System.out.println("***test-remove");
+            } else {
+            throw new Exception();
+            }
+        } catch (Exception ex) {
+            System.out.println("###test-remove");
+        }
+        try {
+            int i = oTestLL.removeNode().xPosition;
+            System.out.println("###test-empty");
+        } catch (Exception ex) {
+            System.out.println("***test-empty");
+        }
+
         scanner.close();
     }
 
